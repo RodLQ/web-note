@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { GlobalConstService } from '../extra/global-const.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  API_URI = 'https://back-note-api.herokuapp.com/api';
+  API_URI = GlobalConstService.API_URI;
 
   constructor( private http:HttpClient ) { }
 

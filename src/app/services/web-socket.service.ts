@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import  io  from 'socket.io-client';
+import { GlobalConstService } from './extra/global-const.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class WebSocketService {
   socket:any;
 
   constructor() {
-    this.socket = io('https://back-note-api.herokuapp.com');
+    this.socket = io( GlobalConstService.URI );
   }
 
   listenToTheServer(NombreDelEvento: string){
