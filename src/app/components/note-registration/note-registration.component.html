@@ -1,0 +1,48 @@
+<div class="form-container">
+
+    <mat-card class="form-login">
+        
+        <button mat-icon-button (click)="clear()" >
+            <mat-icon>format_clear</mat-icon>
+        </button>
+        <br>
+
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Enter title</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="note.title">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Enter description</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="note.description">
+                
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Enter IMG URL (.JPG OR PNG) </mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="note.img_url">
+                
+        </mat-form-field>
+
+        <div class="form-component">
+            <img src="{{note.img_url }}">
+        </div>
+
+
+        <button mat-stroked-button class="form-component"
+                color="primary"
+                (click)="edit ? updateNote() : saveNote()"
+            > 
+            {{ edit ? "Update" : "register"}}
+        </button>
+    </mat-card>
+</div>
+<br>

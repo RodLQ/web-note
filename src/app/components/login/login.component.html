@@ -1,0 +1,29 @@
+<div class="form-container">
+    <mat-card class="form-login">
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Enter your username</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="user.nickname">
+
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="form-component">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password':'text' "
+                [(ngModel)]="user.password">
+
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-stroked-button class="form-component"
+            color="primary"
+            (click)="validar()"
+            >Iniciar
+        </button>
+
+    </mat-card>
+</div>

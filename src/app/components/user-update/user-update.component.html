@@ -1,0 +1,44 @@
+<div class="form-container">
+    <mat-card class="form-login">
+
+        <mat-form-field appearance="outline"
+            class="form-component">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="" disabled
+                [(ngModel)]="user.nickname">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Full name</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="user.name">
+                
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>DNI</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="user.dni">
+                
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" 
+            class="form-component">
+            <mat-label>Mail</mat-label>
+            <input matInput placeholder="" 
+                [(ngModel)]="user.mail">
+                
+        </mat-form-field>
+
+        <button mat-stroked-button class="form-component"
+            color="primary"
+                (click)="updateUser()"
+            >Modificar
+        </button>
+
+    </mat-card>
+</div>
+

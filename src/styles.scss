@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-snackbar {
+    background: #ff0000;
+    color: rgb(255, 255, 255);
+}
+.color-snackbar button{
+    //background: #ffffff;
+    color: rgb(255, 255, 255);
+}
+//Todo: All container
+.container-for-scroll::-webkit-scrollbar{
+    width: 7px;
+    //background-color: rgb(212, 144, 144);
+}
+//Todo: Bar scroll
+.container-for-scroll::-webkit-scrollbar-thumb{
+    background-color: #474ad4;
+    border-radius: 5px;
+}
+
+//Todo: All container
+body::-webkit-scrollbar{
+    width: 7px;
+    //background-color: rgb(212, 144, 144);
+}
+//Todo: Bar scroll
+body::-webkit-scrollbar-thumb{
+    background-color: #474ad4;
+    border-radius: 5px;
+}
+
