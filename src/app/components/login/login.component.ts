@@ -28,13 +28,9 @@ export class LoginComponent implements OnInit {
       private loginUserService:LoginUserService,
       private notifyService: NotifyService,
       private router: Router
-    ) 
-  {
-    
-  }
+    ) {}
 
   ngOnInit(): void {
-
   }
 
   validar(){
@@ -42,12 +38,10 @@ export class LoginComponent implements OnInit {
     this.loginUserService.getValidationLogin(this.user).subscribe(      
       res => {
         this.answerToken = res;
-        if( this.answerToken.token ){
-          
-          this.notifyService.openNotify("Welcome");
+        if( this.answerToken.token ){        
 
+          this.notifyService.openNotify("Welcome");
           localStorage.setItem('token',this.answerToken.token);
-          //console.log( localStorage.getItem('token') );
           this.router.navigate(['/dashboard']);
         }
         else{
@@ -57,7 +51,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-  
-
 }

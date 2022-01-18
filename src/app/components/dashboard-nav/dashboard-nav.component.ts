@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/api/user.service';
 import { NotifyService } from 'src/app/services/extra/notify.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 import { UserUpdateBSheetComponent } from '../user-update-b-sheet/user-update-b-sheet.component';
 import { UserUpdateComponent } from '../user-update/user-update.component';
 
@@ -22,10 +23,12 @@ export class DashboardNavComponent implements OnInit {
     private router: Router,
     private userService:UserService,
     private _bottomSheet: MatBottomSheet,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private webSocketService:WebSocketService
   ) 
   {
     this.getUserWithToken();
+    this.evaluar('event-user');
   }
 
   ngOnInit(): void {
@@ -43,9 +46,9 @@ export class DashboardNavComponent implements OnInit {
         this.result = this.result.result;
 
         this.user = this.result[0];
-
         //this.notifyService.sendUpdateUser(this.result[0]);
-        
+        //? JOIN
+        this.webSocketService.sendToServer('join',this.user.cod);
       }
     );
   }
@@ -54,6 +57,14 @@ export class DashboardNavComponent implements OnInit {
   openBottomSheet(): void {
     this._bottomSheet.open(UserUpdateBSheetComponent);
     this.notifyService.sendUpdateUser(this.result[0]);
+  }
+
+  evaluar(nombre:any){
+    this.webSocketService.listenToTheServer(nombre).subscribe( (dato)=>{
+      if(dato=true){
+        this.getUserWithToken();
+      }
+    } );
   }
 
 }

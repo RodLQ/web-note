@@ -9,20 +9,9 @@ import { User } from 'src/app/models/user';
 })
 export class UserUpdateBSheetComponent implements OnInit {
 
-  constructor
-  (
-    private _bottomSheetRef: MatBottomSheetRef<UserUpdateBSheetComponent>
-  ) 
-  { 
-    
-  }
+  constructor() {}
 
   ngOnInit(): void {
-  }
-
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
   }
 
 }

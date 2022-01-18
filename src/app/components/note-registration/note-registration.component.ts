@@ -38,9 +38,6 @@ export class NoteRegistrationComponent implements OnInit {
   saveNote(){
     this.noteService.saveNotes( this.note ).subscribe(
       res => {
-        console.log(res);
-        this.webSocketService.sendToServer('modified-note', true );
-        
         this.message = res;
         this.note = {};
         this.notifyService.openNotify( this.message.message );
@@ -58,7 +55,6 @@ export class NoteRegistrationComponent implements OnInit {
       }
     );
   }
-
   updateNote(){
     //si se envia la fecha crea un error en el backend
     delete this.note.date;
@@ -68,10 +64,9 @@ export class NoteRegistrationComponent implements OnInit {
         this.notifyService.openNotify( this.message.message );
       }
     );
-
     this.note = {};
     this.edit = false;
-    
+
     this._bottomSheet.dismiss();
   }
 

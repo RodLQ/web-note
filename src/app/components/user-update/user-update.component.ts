@@ -3,6 +3,7 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/api/user.service';
 import { NotifyService } from 'src/app/services/extra/notify.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-user-update',
@@ -12,25 +13,20 @@ import { NotifyService } from 'src/app/services/extra/notify.service';
 export class UserUpdateComponent implements OnInit {
  
   message:any = {};
-
   hide = true;
-
   user:User = {
-    cod: 0,
-    nickname: '',
-    password: '',
-    name: '',
-    position: '',
-    dni: '',
-    mail: '',
-    img_url: ''
+    nickname:'',
+    name:'',
+    dni:'',
+    mail:''
   };
 
   constructor
   (
     private notifyService: NotifyService,
     private userService:UserService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private webSocketService:WebSocketService
   ) 
   {
     this.notifyService.getDataUpdateUser$().subscribe(
@@ -47,8 +43,6 @@ export class UserUpdateComponent implements OnInit {
     delete this.user.password;
     delete this.user.date;
     delete this.user.img_url;
-
-    //console.log(this.user);
     
     this.userService.updateUser(this.user).subscribe(
       res => {
@@ -58,10 +52,5 @@ export class UserUpdateComponent implements OnInit {
         this._bottomSheet.dismiss();
       }
     );
-    
-    
-
   }
-  
-
 }

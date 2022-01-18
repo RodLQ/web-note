@@ -8,16 +8,9 @@ import {MatBottomSheetRef} from '@angular/material/bottom-sheet';
 })
 export class NoteRegBSheetComponent implements OnInit {
 
-  constructor(
-    private _bottomSheetRef: MatBottomSheetRef<NoteRegBSheetComponent>
-  ) { }
-
+  constructor() { }
+  
   ngOnInit(): void {
-  }
-
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
   }
 
 }

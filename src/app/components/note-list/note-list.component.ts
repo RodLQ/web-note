@@ -14,40 +14,25 @@ export class NoteListComponent implements OnInit {
 
   notes:any = [];
   message:any = {};
-
   result:any = [];
 
   constructor( private noteService:NoteService,
     private webSocketService: WebSocketService,
     public notifyService:NotifyService,
     private _bottomSheet: MatBottomSheet)
-
     {
-      this.evaluar('modified-note');
+      this.evaluar('event-room');
     }
 
   ngOnInit(): void {
     this.showListNotes();
-    
   }
-
   showListNotes(){
     if(localStorage.getItem('token')){
       this.noteService.getListNotes().subscribe(
         res => {
           this.notes = res;
-          this.notes = this.notes.result;
-          
-          //? Add a the array
-          //console.log(this.notes);
-          /*
-          let lengthNotes = this.notes.length;
-
-          for (let i = 0; i < lengthNotes ; i++) {
-            this.notes.push(this.notes[i]);    
-          }
-          */
-          //? End 
+          this.notes = this.notes.result;          
         }
       );
     }
@@ -55,7 +40,6 @@ export class NoteListComponent implements OnInit {
       console.log('no hay token');
     }
   }
-
   deleteNote(cod_note:string){
     this.noteService.deleteNotes(cod_note).subscribe(
       res => {
@@ -64,18 +48,15 @@ export class NoteListComponent implements OnInit {
       }
     );
   }
-
   evaluar(nombre:any){
-    this.webSocketService.listenToTheServer(nombre).subscribe( (dato)=>{
-      console.log(dato);
-      if(dato=true){
-        this.showListNotes();
-      }
+    this.webSocketService.listenToTheServer(nombre).subscribe( 
+      (dato)=>{
+        if(dato=true){
+          this.showListNotes();
+        }
     } );
   }
-  
   //?send data to other component
-  
   updateNote( cod_note:string){
     this.openBottomSheet();
     this.noteService.getOneNote(cod_note).subscribe(
@@ -87,7 +68,6 @@ export class NoteListComponent implements OnInit {
       }
     );
   }
-
   //!Show buttom
   openBottomSheet(): void {
     this._bottomSheet.open(NoteRegBSheetComponent);
